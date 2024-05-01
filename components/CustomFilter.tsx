@@ -1,14 +1,16 @@
 "use client"
+
 import React,{useState,Fragment} from 'react'
 import Image from "next/image"
 import {Listbox,Transition} from "@headlessui/react"
 import { Customfilterprops } from '@/types'
 import {updateSearchParams} from '@/utils'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const CustomFilter = ({title,options}:Customfilterprops) => {
+  const route =useRouter();
   const [selected,setSetected] = useState(options[0])
-  const route = useRouter()
+  
   const handleupdateParams=(e:{title:string,value:string})=>{
   const newpathname= updateSearchParams(e.title,e.value.toLowerCase())
  route.push(newpathname)
